@@ -18,8 +18,7 @@ public class Kolejka {
     // Które wynikają z ogólnych ----------------------
     private double p_0; // prawdopodobieństwo że kolejka jest pusta
     private List<Double> listaPrawdopodopienstw;
-    private double p_k; // prawdopodobieństwo k, gdzie 1 <= k <= m - 1
-    private double p_j; // prawdopodobieństwo j, gdzie m <= j <= m + N
+
     // END Które wynikają z ogólnych -------------------
 
     public Kolejka() {}
@@ -30,8 +29,14 @@ public class Kolejka {
         this.N = N;
 
         this.rho = obliczRho();
+        this.p_0 = obliczP_0();
         this.listaPrawdopodopienstw = obliczPrawdopodobienstwa();
 
+    }
+
+    private double obliczP_0() {
+        // TODO: 12.06.2023 do zrobienia
+        return 0;
     }
 
     private List<Double> obliczPrawdopodobienstwa() {
