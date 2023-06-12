@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Kolejka {
@@ -19,9 +18,12 @@ public class Kolejka {
 
 
     // Które wynikają z ogólnych ----------------------
-    private double p_0; // prawdopodobieństwo że kolejka jest pusta
+    private double p_0; // Prawdopodobieństwo że kolejka jest pusta
     private List<Double> listaPrawdopodopienstw;
-    private double p_odmowy;
+    private double p_odmowy; // Prawdopodobieństwo odmowy
+    private double q; // Względna zdolność obsługi
+    private double A; // Bezwzględna zdolność obsługi
+    private double m0; // Średnia ilość zajętych kanałów obsługi
 
     // END Które wynikają z ogólnych -------------------
 
@@ -38,6 +40,21 @@ public class Kolejka {
         this.p_0 = obliczP_0();
         this.listaPrawdopodopienstw = obliczPrawdopodobienstwa();
         this.p_odmowy = obliczP_odmowy();
+        this.q = obliczQ();
+        this.A = obliczA();
+        this.m0 = obliczM0();
+    }
+
+    private double obliczM0() {
+        return A / mju;
+    }
+
+    private double obliczA() {
+        return lambda * q;
+    }
+
+    private double obliczQ() {
+        return  1 - p_odmowy;
     }
 
 
