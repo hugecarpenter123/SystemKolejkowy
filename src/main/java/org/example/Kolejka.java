@@ -47,9 +47,13 @@ public class Kolejka {
         this.c2 = c2;
 
         this.rho = obliczRho();
-
-
         // TODO: 12.06.2023 do wykminienia
+    }
+
+    private double funkcjaCelu() {
+        // listaPrawdopodopienstw.get(N-1) - dlatego bo potrzeba prawdopodobieństwo N,
+        // ale arrayjka indeksuje od 0
+        return lambda * (1 - listaPrawdopodopienstw.get(N-1)) * r - c1 * N - c2 * m;
     }
 
     private double obliczP_0() {
