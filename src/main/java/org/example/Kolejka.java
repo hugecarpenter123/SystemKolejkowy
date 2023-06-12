@@ -12,6 +12,8 @@ public class Kolejka {
     private double rho; //ρ ogólny współczynnik wykorzystania systemu
     private int m;
     private int N;
+    private double c1;
+    private double c2;
     // END ogólne -------------------------------------
 
 
@@ -22,7 +24,9 @@ public class Kolejka {
     // END Które wynikają z ogólnych -------------------
 
     public Kolejka() {}
-    public Kolejka(double lambda, double mju, double r, double c1, double c2, int m, int N) {
+
+    // konstruktor bez funkcji celu
+    public Kolejka(double lambda, double mju, int m, int N) {
         this.lambda = lambda;
         this.mju = mju;
         this.m = m;
@@ -31,7 +35,15 @@ public class Kolejka {
         this.rho = obliczRho();
         this.p_0 = obliczP_0();
         this.listaPrawdopodopienstw = obliczPrawdopodobienstwa();
+    }
 
+    // Konstruktor do funkcji celu
+    public Kolejka(double lambda, double mju, double c1, double c2) {
+        this.lambda = lambda;
+        this.mju = mju;
+        this.c1 = c1;
+        this.c2 = c2;
+        // TODO: 12.06.2023 do wykminienia
     }
 
     private double obliczP_0() {
