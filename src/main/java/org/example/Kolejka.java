@@ -21,6 +21,7 @@ public class Kolejka {
     // Które wynikają z ogólnych ----------------------
     private double p_0; // prawdopodobieństwo że kolejka jest pusta
     private List<Double> listaPrawdopodopienstw;
+    private double p_odmowy;
 
     // END Które wynikają z ogólnych -------------------
 
@@ -36,7 +37,9 @@ public class Kolejka {
         this.rho = obliczRho();
         this.p_0 = obliczP_0();
         this.listaPrawdopodopienstw = obliczPrawdopodobienstwa();
+        this.p_odmowy = obliczP_odmowy();
     }
+
 
     // Konstruktor do funkcji celu
     public Kolejka(double lambda, double mju, double r, double c1, double c2) {
@@ -117,6 +120,14 @@ public class Kolejka {
 
     private double obliczRho() {
         return this.lambda / this.mju;
+    }
+
+    private double obliczP_odmowy() {
+        double ulamek, licznik, mianownik;
+        licznik = Math.pow(rho, m + N) * p_0;
+        mianownik = Math.pow(m, N) * silnia(m);
+        ulamek = licznik / mianownik;
+        return ulamek;
     }
 
     private static int silnia(int x) {
