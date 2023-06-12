@@ -50,15 +50,43 @@ public class Kolejka {
         // TODO: 12.06.2023 do wykminienia
     }
 
-    private double funkcjaCelu() {
-        // listaPrawdopodopienstw.get(N-1) - dlatego bo potrzeba prawdopodobieństwo N,
-        // ale arrayjka indeksuje od 0
-        return lambda * (1 - listaPrawdopodopienstw.get(N-1)) * r - c1 * N - c2 * m;
-    }
-
     private double obliczP_0() {
-        // TODO: 12.06.2023 do zrobienia
-        return 0;
+        // q1 - iloraz ciągu geometrycznego
+        double q1 = rho / m;
+        if (q1 == 0) {
+            double suma = 0;
+            double skladnikDodawania1, skladnikDodawania2, licznik1, licznik2, mianownik1, mianownik2;
+            for (int k = 0; k <= m-1; k++) {
+                licznik1 = Math.pow(rho, k);
+                mianownik1 = silnia(k);
+
+                licznik2 = Math.pow(rho, m) * (N + 1);
+                mianownik2 = silnia(m);
+
+                skladnikDodawania1 = licznik1 / mianownik1;
+                skladnikDodawania2 = licznik2 / mianownik2;
+                suma += skladnikDodawania1 + skladnikDodawania2;
+            }
+            suma = Math.pow(suma, -1);
+            return suma;
+        }
+        else {
+            double suma = 0;
+            double skladnikDodawania1, skladnikDodawania2, licznik1, licznik2, mianownik1, mianownik2;
+            for (int k = 0; k <= m-1; k++) {
+                licznik1 = Math.pow(rho, k);
+                mianownik1 = silnia(k);
+
+                licznik2 = Math.pow(rho, m)  * ( 1 - Math.pow(rho / m, N + 1) );
+                mianownik2 = silnia(m) * ( 1 - rho / m );
+
+                skladnikDodawania1 = licznik1 / mianownik1;
+                skladnikDodawania2 = licznik2 / mianownik2;
+                suma += skladnikDodawania1 + skladnikDodawania2;
+            }
+            suma = Math.pow(suma, -1);
+            return suma;
+        }
     }
 
     private List<Double> obliczPrawdopodobienstwa() {
